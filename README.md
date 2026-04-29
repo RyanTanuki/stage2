@@ -4,11 +4,11 @@ A Flask web application for managing a movie database, built for CS348 at Purdue
 
 ## Features
 
-- **Movies list** — view all movies, sortable by title, year, genre, director, duration, or rating
+- **Movies list** - view all movies, sortable by title, year, genre, director, duration, or rating
 - **Add / Edit / Delete** movies with dynamic genre and director selection
-- **Report** — filter movies by genre, year range, and rating range; displays count, average duration, average rating, and longest/shortest films
-- **SQL injection protection** — all queries use parameterized statements; sort column uses a whitelist
-- **Indexes** — on genre, rating, release year, genre name, and director name to support report and UI queries
+- **Report** - filter movies by genre, year range, and rating range; displays count, average duration, average rating, and longest/shortest films
+- **SQL injection protection** - all queries use parameterized statements; sort column uses a whitelist
+- **Indexes** - on genre, rating, release year, genre name, and director name to support report and UI queries
 
 ## Tech Stack
 
