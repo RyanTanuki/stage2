@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>All Movies</h2>
+  <a href="/movies/add" class="btn btn-success">+ Add Movie</a>
+</div>
+
+{% macro sort_header(label, col) %}
+  {% set next_order = 'asc' if (sort == col and order == 'desc') else 'desc' %}
+  {% set arrow = '▲' if (sort == col and order == 'asc') else ('▼' if (sort == col and order == 'desc') else '') %}
+  <th><a href="/movies?sort={{ col }}&order={{ next_order }}"
+         class="text-white text-decoration-none">{{ label }} {{ arrow }}</a></th>
+{% endmacro %}
+
+<table class="table table-striped table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      {{ sort_header('Title',         'title') }}
+      {{ sort_header('Year',          'release_year') }}
+      {{ sort_header('Genre',         'genre') }}
+      {{ sort_header('Director',      'director') }}
+      {{ sort_header('Duration (min)','duration_min') }}
+      {{ sort_header('Rating',        'rating') }}
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for m in movies %}
+    <tr>
+      <td>{{ m.movie_id }}</td>
+      <td>{{ m.title }}</td>
+      <td>{{ m.release_year }}</td>
+      <td>{{ m.genre }}</td>
+      <td>{{ m.director }}</td>
+      <td>{{ m.duration_min }}</td>
+      <td>{{ m.rating }}</td>
+      <td>
+        <a href="/movies/edit/{{ m.movie_id }}" class="btn btn-sm btn-primary">Edit</a>
+        <form method="post" action="/movies/delete/{{ m.movie_id }}"
+              style="display:inline"
+              onsubmit="return confirm('Delete {{ m.title }}?')">
+          <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
