@@ -5,3 +5,6 @@ __pycache__/
 movies.db
 *.db
 .env
+AI_useage.txt
+instructions.txt
+recording_instructions.txt
